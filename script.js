@@ -24,13 +24,40 @@ function onReady() {
     // - Rendered to the DOM
 }
 
-
+//  ARCANE SCEPTRE CLICK
 function arcaneSceptreClick() {
-    console.log('arcane sceptre!');
-    fungusHP = fungusHP -14;
-    playerAP = playerAP -12;
-    console.log('Fungus HP:',fungusHP);
-    console.log('Player HP:',playerAP);
+    //console.log(fungusHP);
+    if (fungusHP === 0) {
+        console.log('you killed shroomie boi already!');
+    } else if (playerAP <= 11) {
+        console.log('game over!')
+        $('.freaky-fungus').removeClass('walk');
+        $('.freaky-fungus').addClass('jump');
+    } else if (fungusHP > 0 && playerAP < 12) {
+        console.log('OOM not enough AP!');
+    } else if (fungusHP > 14 && playerAP >= 12) {
+        console.log('arcane sceptre!');
+        fungusHP = fungusHP -14;
+        playerAP = playerAP -12;
+        //console.log('Fungus HP:',fungusHP);
+        //console.log('Player AP:',playerAP);
+        $('.hp-text').text(`${fungusHP}`);
+        $('.ap-text').text(`${playerAP}`);
+    } else if (fungusHP <= 14 && playerAP >= 12) {
+        console.log('arcane sceptre, KILL SHOT!');
+        fungusHP = 0;
+        playerAP = playerAP -12;
+        //console.log('Fungus HP:',fungusHP);
+        //console.log('Player AP:',playerAP);
+        $('.hp-text').text(`${fungusHP}`);
+        $('.ap-text').text(`${playerAP}`);
+        $('.freaky-fungus').removeClass('walk');
+        $('.freaky-fungus').addClass('dead');
+        //$()
+    } else if (playerAP <= 11) {
+        console.log('game over!')
+        $('.freaky-fungus-walk').html('.freaky-fungus-jump');
+    }
     //$(progress).html('value', fungusHP)
 }
 
